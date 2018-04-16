@@ -33,9 +33,9 @@ The `span` proposal paper[P0122R7] makes it clear that implementations are encou
 
 In common with other containers then, we propose to add an `at()` member function with guaranteed bounds checking on all implementations even in optimised builds, throwing `std::out_of_range` if the supplied argument is invalid.
 
-### 2.3 Non-member subspan operations ###
+### 2.3 Non-member subview operations ###
 
-The current wording for `span` defines the subspan operations (namely `first()`, `last()` and `subspan()`) as member functions. We note that these are specified only to call public `span` constructors, and could therefore be made non-members instead, following the well-known principle of "preferring non-member, non-friends".
+The current wording for `span` defines the subview operations (namely `first()`, `last()` and `subspan()`) as member functions. We note that these are specified only to call public `span` constructors, and could therefore be made non-members instead, following the well-known principle of "preferring non-member, non-friends".
 
 This in itself would be a minor quibble, but unfortunately making these functions members introduces a major usability issue. As member templates of a class template, the fixed-size overloads of these functions require the use of the highly unusual "dot template" syntax in cases where the `span` itself is a dependent type. For example:
 
